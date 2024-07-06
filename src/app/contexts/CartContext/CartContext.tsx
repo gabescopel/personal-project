@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { 
     createContext, 
@@ -16,14 +16,22 @@ type CartContextType = {
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [cart, setCart] = useState<number[]>(() => {
-        const savedCart = localStorage.getItem('cart');
-        return savedCart ? JSON.parse(savedCart) : [];
-    });
+    const [cart, setCart] = useState<number[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(cart));
-    }, [cart]);
+        const savedCart = localStorage.getItem('cart');
+        if (savedCart) {
+            setCart(JSON.parse(savedCart));
+        }
+        setLoading(false);
+    }, []);
+
+    useEffect(() => {
+        if (!loading) {
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+    }, [cart, loading]);
 
     const toggleCart = (id: number) => {
         setCart((prevCart) =>
@@ -32,6 +40,10 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
                 : [...prevCart, id]
         );
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <CartContext.Provider value={{ cart, toggleCart }}>

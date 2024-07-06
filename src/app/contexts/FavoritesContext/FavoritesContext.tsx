@@ -1,4 +1,4 @@
-'use client'
+'use client';
 
 import React, { 
     createContext, 
@@ -16,14 +16,22 @@ type FavoritesContextType = {
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 
 export const FavoritesProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
-    const [favorites, setFavorites] = useState<number[]>(() => {
-        const savedFavorites = localStorage.getItem('favorites');
-        return savedFavorites ? JSON.parse(savedFavorites) : [];
-    });
+    const [favorites, setFavorites] = useState<number[]>([]);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        localStorage.setItem('favorites', JSON.stringify(favorites));
-    }, [favorites]);
+        const savedFavorites = localStorage.getItem('favorites');
+        if (savedFavorites) {
+            setFavorites(JSON.parse(savedFavorites));
+        }
+        setLoading(false);
+    }, []);
+
+    useEffect(() => {
+        if (!loading) {
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+        }
+    }, [favorites, loading]);
 
     const toggleFavorite = (id: number) => {
         setFavorites((prevFavorites) =>
@@ -32,6 +40,10 @@ export const FavoritesProvider: React.FC<{ children: ReactNode }> = ({ children 
                 : [...prevFavorites, id]
         );
     };
+
+    if (loading) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <FavoritesContext.Provider value={{ favorites, toggleFavorite }}>
