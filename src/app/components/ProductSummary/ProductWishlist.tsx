@@ -3,12 +3,8 @@
 import { useState } from "react";
 import { WishlistEmpty } from "../Icons/WishlistEmpty";
 import { WishlistFill } from "../Icons/WishlistFill";
+import { WishlistProps } from "@/types/types";
 
-type WishlistProps = {
-    id: number,
-    isFavorited: boolean, 
-    toggleFavorite: (id: number) => void,
-}
 
 export function ProductWishlist({ id, isFavorited, toggleFavorite }: WishlistProps) {
     const [ hover, setHover ] = useState<boolean>(false);

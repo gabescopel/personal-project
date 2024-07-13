@@ -1,6 +1,6 @@
 'use client';
 
-import { ProductType } from "@/types/ProductType";
+import { ProductType } from "@/types/types";
 import { ProductImage } from "./ProductImage";
 import { formatPrice } from "@/utils";
 import { useFavorites } from '../../contexts/FavoritesContext/FavoritesContext';

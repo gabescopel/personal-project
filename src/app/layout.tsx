@@ -18,7 +18,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={(clsx(inter.className), 'bg-[#E9EBEE]')}>
-        {/* <NavBar /> */}
         <main className="h-screen p-4 md:p-16">
           {children}
         </main>

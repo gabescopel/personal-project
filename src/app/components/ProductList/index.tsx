@@ -1,27 +1,7 @@
-import { ProductType } from "@/types/ProductType";
 import { ProductSummary } from "../ProductSummary";
 import { FavoritesProvider } from "../../contexts/FavoritesContext/FavoritesContext";
 import { CartProvider } from "../../contexts/CartContext/CartContext";
-import productImage from '../../../../public/images/productImage.png'
-
-const products: ProductType[] = [
-    {
-        productId: 1,
-        productImage: productImage,
-        title: 'Monitor LED 27" Gamer Curvo Samsung 1920 x 1080 FHD 240 Hz HDMI, DP, Gsync Série CRG50',
-        listPrice: 2813,
-        sellingPrice: 2599,
-        installments: 10,
-    },
-    {
-        productId: 2,
-        productImage: productImage,
-        title: 'Monitor LED 27" Gamer Curvo Samsung 1920 x 1080 FHD 240 Hz HDMI, DP, Gsync Série CRG50',
-        listPrice: 2813,
-        sellingPrice: 2599,
-        installments: 10,
-    },
-];
+import { products } from "@/services/api";
 
 export function ProductList() {
     return (

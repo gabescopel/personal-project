@@ -7,11 +7,7 @@ import React, {
     ReactNode, 
     useEffect 
 } from 'react';
-
-type CartContextType = {
-    cart: number[];
-    toggleCart: (id: number) => void;
-};
+import { CartContextType } from './type';
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 

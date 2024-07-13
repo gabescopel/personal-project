@@ -7,11 +7,7 @@ import React, {
     ReactNode, 
     useEffect 
 } from 'react';
-
-type FavoritesContextType = {
-    favorites: number[];
-    toggleFavorite: (id: number) => void;
-};
+import { FavoritesContextType } from './type';
 
 const FavoritesContext = createContext<FavoritesContextType | undefined>(undefined);
 

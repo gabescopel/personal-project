@@ -1,12 +1,6 @@
 import clsx from "clsx";
 import { CheckIcon } from "../Icons/CheckIcon";
-
-type BuyButtonProps = {
-    toggleCart: (id: number) => void,
-    productId: number,
-    hasProductId: boolean,
-    title: string,
-}
+import { BuyButtonProps } from "@/types/types";
 
 export function ProductBuyButton({ 
     toggleCart, 
